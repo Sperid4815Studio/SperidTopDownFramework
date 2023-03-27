@@ -11,7 +11,7 @@ namespace SperidTopDownFramework.Runtime
         /// </summary>
         void Start()
         {
-
+            Debug.Log("RuntimeExample");
         }
 
         /// <summary>

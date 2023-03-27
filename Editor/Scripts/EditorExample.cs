@@ -9,7 +9,7 @@ namespace SperidTopDownFramework.Editor
         // Start is called before the first frame update
         void Start()
         {
-
+            Debug.Log("EditorExample");
         }
 
         // Update is called once per frame
