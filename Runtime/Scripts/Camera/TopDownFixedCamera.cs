@@ -4,16 +4,20 @@ using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
 {
-    public class TopDownFixedCamera : MonoBehaviour
+    public class TopDownFixedCamera : CameraBase
     {
-        // Start is called before the first frame update
-        void Start()
+        /// <summary>
+        /// Start is called before the first frame update
+        /// </summary>
+        protected override void Start()
         {
         
         }
 
-        // Update is called once per frame
-        void Update()
+        /// <summary>
+        /// Update is called once per frame
+        /// </summary>
+        protected override void Update()
         {
         
         }
