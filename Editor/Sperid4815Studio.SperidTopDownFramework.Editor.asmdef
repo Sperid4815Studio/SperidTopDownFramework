@@ -1,6 +1,6 @@
 {
     "name": "Sperid4815Studio.SperidTopDownFramework.Editor",
-    "rootNamespace": "",
+    "rootNamespace": "SperidTopDownFramework.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"
