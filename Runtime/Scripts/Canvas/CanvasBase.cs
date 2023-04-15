@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,12 @@ using UnityEngine;
 namespace SperidTopDownFramework.Runtime
 {
     public class CanvasBase : MonoBehaviour
-    {       
+    {
         private Dictionary<string, CanvasElement> _elements;
-        
+
+        public static event Action<CanvasBase> OnCanvasAwake;
+        public static event Action<CanvasBase> OnCanvasDestroy;
+
         protected CanvasElement GetElement(string id)
         {
             if (!_elements.ContainsKey(id))
@@ -57,6 +61,8 @@ namespace SperidTopDownFramework.Runtime
                 Debug.Assert(_elements.ContainsKey(e.Id) == false);
                 _elements[e.Id] = e;
             }
+
+            OnCanvasAwake.Invoke(this);
         }
 
         protected virtual void Start()
@@ -73,6 +79,7 @@ namespace SperidTopDownFramework.Runtime
         {
             _elements.Clear();
             _elements = null;
+            OnCanvasDestroy.Invoke(this);
         }
     }
 }
