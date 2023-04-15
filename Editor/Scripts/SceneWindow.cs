@@ -6,7 +6,7 @@ namespace SperidTopDownFramework.Editor
 {
     public class SceneWindow : EditorWindow
     {
-        private const string START_SCENE_PATH = "SceneWindow_StartScenePath";
+        private const string StartScenePath = "SceneWindow_StartScenePath";
 
         [MenuItem("SperidTopDownFramework/SceneWindow")]
         public static void Open()
@@ -16,7 +16,7 @@ namespace SperidTopDownFramework.Editor
 
         private void OnEnable()
         {
-            var startScenePath = EditorUserSettings.GetConfigValue(START_SCENE_PATH);
+            var startScenePath = EditorUserSettings.GetConfigValue(StartScenePath);
 
             if (string.IsNullOrEmpty(startScenePath))
             {
@@ -65,7 +65,7 @@ namespace SperidTopDownFramework.Editor
 
             if (beforeScenePath != afterScenePath)
             {
-                EditorUserSettings.SetConfigValue(START_SCENE_PATH, afterScenePath);
+                EditorUserSettings.SetConfigValue(StartScenePath, afterScenePath);
             }
         }
     }
