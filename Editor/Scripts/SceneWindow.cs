@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -18,20 +16,21 @@ namespace SperidTopDownFramework.Editor
 
         private void OnEnable()
         {
-            string startScenePath = EditorUserSettings.GetConfigValue(START_SCENE_PATH);
+            var startScenePath = EditorUserSettings.GetConfigValue(START_SCENE_PATH);
 
-            if (!string.IsNullOrEmpty(startScenePath))
+            if (string.IsNullOrEmpty(startScenePath))
             {
-                SceneAsset sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(startScenePath);
-                if (sceneAsset == null)
-                {
-                    Debug.LogWarning(string.Format("{0} is not found", startScenePath));
-                }
-                else
-                {
-                    EditorSceneManager.playModeStartScene = sceneAsset;
-                }
+                return;
+            }
 
+            var sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(startScenePath);
+            if (sceneAsset == null)
+            {
+                Debug.LogWarning($"{startScenePath} is not found");
+            }
+            else
+            {
+                EditorSceneManager.playModeStartScene = sceneAsset;
             }
         }
 
