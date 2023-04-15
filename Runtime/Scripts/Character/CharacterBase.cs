@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
@@ -7,16 +5,16 @@ namespace SperidTopDownFramework.Runtime
     public abstract class CharacterBase : MonoBehaviour
     {
         [SerializeField]
-        protected float _moveSpeed;
+        protected float MoveSpeed;
 
-        protected Vector3 _moveDirection;
+        protected Vector3 MoveDirection;
 
         /// <summary>
         /// Start is called before the first frame update
         /// </summary>
         protected virtual void Start()
         {
-        
+
         }
 
         /// <summary>

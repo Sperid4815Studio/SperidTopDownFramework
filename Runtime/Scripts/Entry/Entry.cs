@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
@@ -10,12 +8,12 @@ namespace SperidTopDownFramework.Runtime
 
         private void Start()
         {
-            _data = Resources.Load<EntryData>(EntryData.DEFAULT_RESOURCES_PATH);
-            Debug.Assert(_data != null);
+            _data = Resources.Load<EntryData>(EntryData.DefaultResourcesPath);
 
             AddressableManager.Instance.Initialize();
             CanvasManager.Instance.Initialize();
 
+            System.Diagnostics.Debug.Assert(_data != null, nameof(_data) + " != null");
             UnityEngine.SceneManagement.SceneManager.LoadScene(_data.LoadSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
     }

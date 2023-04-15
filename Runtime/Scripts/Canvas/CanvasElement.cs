@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
@@ -9,7 +7,7 @@ namespace SperidTopDownFramework.Runtime
         [SerializeField]
         private string _id;
 
-        public string Id { get => _id; }
+        public string Id => _id;
 
         public void Reset()
         {

@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace SperidTopDownFramework.Runtime
@@ -11,9 +7,6 @@ namespace SperidTopDownFramework.Runtime
         public int RefCount { get; set; }
         public AsyncOperationHandle Handle { get; set; }
 
-        public bool IsLoading
-        {
-            get => Handle.IsDone == false;
-        }
+        public bool IsLoading => Handle.IsDone == false;
     }
 }

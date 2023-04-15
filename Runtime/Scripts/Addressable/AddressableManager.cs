@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace SperidTopDownFramework.Runtime
 {
@@ -21,9 +20,9 @@ namespace SperidTopDownFramework.Runtime
         public override void Destroy()
         {
             var array = _assetEntities.Keys.ToArray();
-            for (int i = 0; i < array.Length; i++)
+            foreach (var t in array)
             {
-                Release(array[i]);
+                Release(t);
             }
 
             _assetEntities.Clear();
@@ -41,7 +40,7 @@ namespace SperidTopDownFramework.Runtime
             var op = Addressables.LoadAssetAsync<TObject>(key);
 
             // WaitForCompletion = Sync wait
-            var prefab = op.WaitForCompletion();
+            op.WaitForCompletion();
 
             _assetEntities[key] = new AssetEntity()
             {
@@ -109,7 +108,7 @@ namespace SperidTopDownFramework.Runtime
                 }
                 else if (notifyError)
                 {
-                    Debug.LogError(string.Format("AddressableManager : {0} not found,but try release.", key));
+                    Debug.LogError($"AddressableManager : {key} not found,but try release.");
                 }
             }
         }
@@ -118,11 +117,11 @@ namespace SperidTopDownFramework.Runtime
         {
             if (_assetEntities.ContainsKey(key))
             {
-                return GameObject.Instantiate<TObject>(_assetEntities[key].Handle.Result as TObject);
+                return GameObject.Instantiate(_assetEntities[key].Handle.Result as TObject);
             }
             else
             {
-                Debug.LogError(string.Format("AddressableManager : {0} not loaded,but try instantiate.", key));
+                Debug.LogError($"AddressableManager : {key} not loaded,but try instantiate.");
                 return null;
             }
         }
@@ -141,14 +140,7 @@ namespace SperidTopDownFramework.Runtime
 
         public bool IsAssetLoading(object key)
         {
-            if (_assetEntities.ContainsKey(key))
-            {
-                return _assetEntities[key].IsLoading;
-            }
-            else
-            {
-                return false;
-            }
+            return _assetEntities.ContainsKey(key) && _assetEntities[key].IsLoading;
         }
 
         private void Update()

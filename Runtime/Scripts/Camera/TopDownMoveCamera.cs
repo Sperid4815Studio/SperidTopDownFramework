@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,15 +6,15 @@ namespace SperidTopDownFramework.Runtime
     public class TopDownCamera : CameraBase
     {
         [System.Serializable]
-        public struct OffsetParametor
+        public struct OffsetParameter
         {
-            public Vector3 _position;
+            public Vector3 Position;
 
-            public Vector3 _rotation;
+            public Vector3 Rotation;
         }
 
         [SerializeField]
-        private List<OffsetParametor> _offsets;
+        private readonly List<OffsetParameter> _offsets = null;
 
         [SerializeField]
         private GameObject _followTarget;
@@ -51,8 +50,8 @@ namespace SperidTopDownFramework.Runtime
                 return;
             }
 
-            transform.position = _followTarget.transform.position + _offsets[CurrentOffsetIndex]._position;
-            transform.rotation = Quaternion.Euler(_offsets[CurrentOffsetIndex]._rotation);
+            transform.position = _followTarget.transform.position + _offsets[CurrentOffsetIndex].Position;
+            transform.rotation = Quaternion.Euler(_offsets[CurrentOffsetIndex].Rotation);
         }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
@@ -12,20 +10,22 @@ namespace SperidTopDownFramework.Runtime
         {
             get
             {
+                if (_instance != null)
+                {
+                    return _instance;
+                }
+
+                // Try find instance.
+                _instance = FindObjectOfType<T>();
+
+                // Create new instance.
                 if (_instance == null)
                 {
-                    // Try find instance.
-                    _instance = GameObject.FindObjectOfType<T>();
-
-                    // Create new instance.
-                    if (_instance == null)
-                    {
-                        var ob = new GameObject("SingletonBehaviour");
-                        _instance = ob.AddComponent<T>();
-                    }
-
-                    GameObject.DontDestroyOnLoad(_instance);
+                    var ob = new GameObject("SingletonBehaviour");
+                    _instance = ob.AddComponent<T>();
                 }
+
+                DontDestroyOnLoad(_instance);
 
                 return _instance;
             }
@@ -36,7 +36,7 @@ namespace SperidTopDownFramework.Runtime
             return _instance != null;
         }
 
-        public bool IsInitialize { get; protected set; } = false;
+        public bool IsInitialize { get; protected set; }
 
         public virtual void Initialize()
         {

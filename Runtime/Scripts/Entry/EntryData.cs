@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
@@ -8,12 +6,11 @@ namespace SperidTopDownFramework.Runtime
     [System.Serializable]
     public class EntryData : ScriptableObject
     {
-        public const string DEFAULT_RESOURCES_PATH = "EntryData";
+        public const string DefaultResourcesPath = "EntryData";
 
-        [SerializeField]
-        private string _loadSceneName;
+        [SerializeField] private string _loadSceneName = null;
 
 
-        public string LoadSceneName { get => _loadSceneName; }
+        public string LoadSceneName => _loadSceneName;
     }
 }

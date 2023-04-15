@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
@@ -9,7 +7,7 @@ namespace SperidTopDownFramework.Runtime
         /// <summary>
         /// tart is called before the first frame update
         /// </summary>
-        void Start()
+        private void Start()
         {
             Debug.Log("RuntimeExample");
         }
@@ -17,7 +15,7 @@ namespace SperidTopDownFramework.Runtime
         /// <summary>
         /// Update is called once per frame
         /// </summary>
-        void Update()
+        private void Update()
         {
 
         }

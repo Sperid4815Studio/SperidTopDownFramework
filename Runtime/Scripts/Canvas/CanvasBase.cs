@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,15 +13,7 @@ namespace SperidTopDownFramework.Runtime
 
         protected CanvasElement GetElement(string id)
         {
-            if (!_elements.ContainsKey(id))
-            {
-                return null;
-            }
-            else
-            {
-                return _elements[id];
-            }
-
+            return !_elements.ContainsKey(id) ? null : _elements[id];
         }
 
         protected T GetElementComponent<T>(string id, bool includeChild = false) where T : Component
@@ -62,7 +53,7 @@ namespace SperidTopDownFramework.Runtime
                 _elements[e.Id] = e;
             }
 
-            OnCanvasAwake.Invoke(this);
+            OnCanvasAwake?.Invoke(this);
         }
 
         protected virtual void Start()
@@ -79,7 +70,7 @@ namespace SperidTopDownFramework.Runtime
         {
             _elements.Clear();
             _elements = null;
-            OnCanvasDestroy.Invoke(this);
+            OnCanvasDestroy?.Invoke(this);
         }
     }
 }
