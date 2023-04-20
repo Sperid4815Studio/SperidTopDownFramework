@@ -6,10 +6,18 @@ namespace SperidTopDownFramework.Runtime
 {
     public class CanvasBase : MonoBehaviour
     {
+        [SerializeField]
+        private GameStateManager.GameState _activeState;
+
         private Dictionary<string, CanvasElement> _elements;
 
         public static event Action<CanvasBase> OnCanvasAwake;
         public static event Action<CanvasBase> OnCanvasDestroy;
+
+        public void SetActive(GameStateManager.GameState state)
+        {
+            gameObject.SetActive(_activeState.HasFlag(state));
+        }
 
         protected CanvasElement GetElement(string id)
         {

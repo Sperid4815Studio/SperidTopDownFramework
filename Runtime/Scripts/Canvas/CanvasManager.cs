@@ -18,6 +18,9 @@ namespace SperidTopDownFramework.Runtime
             CanvasBase.OnCanvasDestroy += UnRegister;
 
             name = "CanvasManager";
+
+            GameStateManager.Instance.OnStateChanged += OnStateChanged;
+
             base.Initialize();
         }
 
@@ -44,6 +47,14 @@ namespace SperidTopDownFramework.Runtime
             var handle = Resources.Load<GameObject>("EventSystem");
             _eventSystem = Instantiate(handle).GetComponent<UnityEngine.EventSystems.EventSystem>();
             _eventSystem.gameObject.transform.SetParent(transform);
+        }
+
+        private void OnStateChanged(GameStateManager.GameState state)
+        {
+            foreach(var c in _registerCanvases)
+            {
+                c.SetActive(state);
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ namespace SperidTopDownFramework.Runtime
         {
             _data = Resources.Load<EntryData>(EntryData.DefaultResourcesPath);
 
+            GameStateManager.Instance.Initialize();
             AddressableManager.Instance.Initialize();
             CanvasManager.Instance.Initialize();
 
