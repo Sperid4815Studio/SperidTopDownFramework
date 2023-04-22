@@ -12,6 +12,7 @@ namespace SperidTopDownFramework.Runtime
 
             GameStateManager.Instance.Initialize();
             AddressableManager.Instance.Initialize();
+            LocalizationManager.Instance.Initialize();
             CanvasManager.Instance.Initialize();
 
             System.Diagnostics.Debug.Assert(_data != null, nameof(_data) + " != null");
