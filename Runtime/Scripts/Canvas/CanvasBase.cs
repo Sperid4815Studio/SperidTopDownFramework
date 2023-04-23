@@ -61,6 +61,7 @@ namespace SperidTopDownFramework.Runtime
                 _elements[e.Id] = e;
             }
 
+            transform.SetParent(CanvasManager.Instance.transform);
             OnCanvasAwake?.Invoke(this);
         }
 

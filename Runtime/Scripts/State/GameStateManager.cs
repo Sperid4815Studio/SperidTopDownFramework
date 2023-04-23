@@ -13,17 +13,17 @@ namespace SperidTopDownFramework.Runtime
         [System.Flags]
         public enum GameState
         {
-            None,
-            State1,
-            State2,
-            State3,
-            State4,
-            State5,
-            State6,
-            State7,
-            State8,
-            State9,
-            State10
+            None = 0x01<<1,
+            State1 = 0x01<<2,
+            State2 = 0x01<<3,
+            State3 = 0x01<<4,
+            State4 = 0x01<<5,
+            State5 = 0x01<<6,
+            State6 = 0x01<<7,
+            State7 = 0x01<<8,
+            State8 = 0x01<<9,
+            State9 = 0x01<<10,
+            State10 = 0x01<<11
         }
 
         private Dictionary<string, GameState> _stateDic;
