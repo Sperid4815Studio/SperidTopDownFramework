@@ -15,6 +15,21 @@ namespace SperidTopDownFramework.Runtime
             LocalizationManager.Instance.Initialize();
             CanvasManager.Instance.Initialize();
 
+            foreach(var assetBundle in _data.LoadAssetBundles)
+            {
+                AddressableManager.Instance.LoadAssetSync<GameObject>(assetBundle);
+            }
+
+            foreach(var assetBundle in _data.InstantiateAssetBundles)
+            {
+                AddressableManager.Instance.Instantiate<GameObject>(assetBundle);
+            }
+
+            foreach(var pack in _data.RegisterStatePacks)
+            {
+                GameStateManager.Instance.BindName(pack.Name,pack.State);
+            }
+
             System.Diagnostics.Debug.Assert(_data != null, nameof(_data) + " != null");
             UnityEngine.SceneManagement.SceneManager.LoadScene(_data.LoadSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
