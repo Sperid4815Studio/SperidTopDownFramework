@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
 {
-    public abstract class CharacterBase : MonoBehaviour
+    public abstract class CharacterBase : MonoBehaviour,IDestroyable
     {
         [SerializeField]
         protected float _moveSpeed;
@@ -26,6 +26,11 @@ namespace SperidTopDownFramework.Runtime
         protected virtual void Update()
         {
 
+        }
+
+        public void CustomDestroy()
+        {
+            Destroy(gameObject);
         }
     }
 }

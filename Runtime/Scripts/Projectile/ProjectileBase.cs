@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
 {
-    public class ProjectileBase : MonoBehaviour
+    public class ProjectileBase : MonoBehaviour,IDestroyable
     {
         public enum ProjectileState
         {
@@ -33,6 +33,8 @@ namespace SperidTopDownFramework.Runtime
         public int ReflectCount { get => _reflectCount; set => _reflectCount = value; }
         public Vector3 Direction { get => _direction; set => _direction = value; }
         public ProjectileState State { get => _state; protected set => _state = value; }
+
+        public event System.Action OnDestroy;
         
         public virtual void Play()
         {
@@ -49,6 +51,11 @@ namespace SperidTopDownFramework.Runtime
             State = ProjectileState.Pause;
         }
 
+        public void CustomDestroy()
+        {
+            OnDestroy?.Invoke();
+            Destroy(gameObject);
+        }
 
         // Start is called before the first frame update
         protected virtual void Start()
