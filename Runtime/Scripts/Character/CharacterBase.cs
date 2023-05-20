@@ -5,7 +5,10 @@ namespace SperidTopDownFramework.Runtime
     public abstract class CharacterBase : MonoBehaviour
     {
         [SerializeField]
-        protected float MoveSpeed;
+        protected float _moveSpeed;
+
+        [SerializeField]
+        private int _hp;
 
         protected Vector3 MoveDirection;
 
