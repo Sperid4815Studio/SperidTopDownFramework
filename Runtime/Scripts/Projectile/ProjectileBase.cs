@@ -74,7 +74,7 @@ namespace SperidTopDownFramework.Runtime
             transform.Translate(_direction * Speed * Time.deltaTime);
         }
 
-        protected virtual void OnTriggerEnter(Collider other)
+        protected virtual void OnCollisionEnter(Collision collision)
         {
             
         }

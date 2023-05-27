@@ -126,6 +126,19 @@ namespace SperidTopDownFramework.Runtime
             }
         }
 
+        public GameObject Instantiate(object key,Vector3 position,Quaternion rotation) 
+        {
+            if (_assetEntities.ContainsKey(key))
+            {
+                return GameObject.Instantiate(_assetEntities[key].Handle.Result as GameObject,position,rotation);
+            }
+            else
+            {
+                Debug.LogError($"AddressableManager : {key} not loaded,but try instantiate.");
+                return null;
+            }
+        }
+
         public bool IsAssetLoaded(object key)
         {
             if (_assetEntities.ContainsKey(key))

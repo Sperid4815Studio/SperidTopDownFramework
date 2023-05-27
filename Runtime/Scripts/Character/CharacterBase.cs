@@ -12,6 +12,23 @@ namespace SperidTopDownFramework.Runtime
 
         protected Vector3 MoveDirection;
 
+        public int Hp { get => _hp; protected set { _hp = value; } }
+
+
+        public virtual void CustomDestroy()
+        {
+            Destroy(gameObject);
+        }
+
+        public virtual void ApplyDamage(int value)
+        {
+            Hp -= value;
+            if (Hp <= 0)
+            {
+                CustomDestroy();
+            }
+        }
+
         /// <summary>
         /// Start is called before the first frame update
         /// </summary>
@@ -26,11 +43,6 @@ namespace SperidTopDownFramework.Runtime
         protected virtual void Update()
         {
 
-        }
-
-        public void CustomDestroy()
-        {
-            Destroy(gameObject);
         }
     }
 }
