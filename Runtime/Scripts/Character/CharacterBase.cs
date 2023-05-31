@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
 {
-    public abstract class CharacterBase : MonoBehaviour,IDestroyable
+    public abstract class CharacterBase : MonoBehaviour,IDestroyable<CharacterBase>
     {
         [SerializeField]
         protected float _moveSpeed;
@@ -12,11 +13,16 @@ namespace SperidTopDownFramework.Runtime
 
         protected Vector3 MoveDirection;
 
+        public event Action<CharacterBase> OnCustomDestroy;
+
         public int Hp { get => _hp; protected set { _hp = value; } }
+
+        public float MoveSpeed { get => _moveSpeed; protected set { _moveSpeed = value; } }
 
 
         public virtual void CustomDestroy()
         {
+            OnCustomDestroy?.Invoke(this);
             Destroy(gameObject);
         }
 

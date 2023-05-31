@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
 {
-    public class ProjectileBase : MonoBehaviour,IDestroyable
+    public class ProjectileBase : MonoBehaviour,IDestroyable<ProjectileBase>
     {
         public enum ProjectileState
         {
@@ -34,8 +35,8 @@ namespace SperidTopDownFramework.Runtime
         public Vector3 Direction { get => _direction; set => _direction = value; }
         public ProjectileState State { get => _state; protected set => _state = value; }
 
-        public event System.Action OnDestroy;
-        
+        public event Action<ProjectileBase> OnCustomDestroy;
+
         public virtual void Play()
         {
             State = ProjectileState.Play;
@@ -53,7 +54,7 @@ namespace SperidTopDownFramework.Runtime
 
         public void CustomDestroy()
         {
-            OnDestroy?.Invoke();
+            OnCustomDestroy?.Invoke(this);
             Destroy(gameObject);
         }
 

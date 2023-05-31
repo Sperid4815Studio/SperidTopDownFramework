@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace SperidTopDownFramework.Runtime
 {
-    public interface IDestroyable
+    public interface IDestroyable<T>
+        where T : MonoBehaviour
     {
+        event System.Action<T> OnCustomDestroy;
         void CustomDestroy();
     }
 }
