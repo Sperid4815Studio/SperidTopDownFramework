@@ -71,6 +71,16 @@ namespace SperidTopDownFramework.Runtime
             _stateDic.Remove(name);
         }
 
+        public GameState GetBindState(string name)
+        {
+            if (_stateDic.ContainsKey(name))
+            {
+                return _stateDic[name];
+            }
+
+            return GameState.None;
+        }
+
         public override void Initialize()
         {
             _stateDic = new();
