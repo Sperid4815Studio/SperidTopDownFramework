@@ -6,24 +6,6 @@ namespace SperidTopDownFramework.Runtime
 {
     public class DestroyZone : MonoBehaviour
     {
-        private void OnTriggerEnter(Collider other)
-        {
-            var d = other.gameObject.GetComponent<IDestroyable<MonoBehaviour>>();
-            if (d == null)
-            {
-                return;
-            }
-            d.CustomDestroy();
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            var d = collision.gameObject.GetComponent<IDestroyable<MonoBehaviour>>();
-            if (d == null)
-            {
-                return;
-            }
-            d.CustomDestroy();
-        }
+        
     }
 }

@@ -14,6 +14,8 @@ namespace SperidTopDownFramework.Runtime
         public static event Action<CanvasBase> OnCanvasAwake;
         public static event Action<CanvasBase> OnCanvasDestroy;
 
+        public GameStateManager.GameState ActiveState { get => _activeState; }
+
         public void SetActive(GameStateManager.GameState state)
         {
             gameObject.SetActive(_activeState.HasFlag(state));
