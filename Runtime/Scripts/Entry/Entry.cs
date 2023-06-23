@@ -25,11 +25,7 @@ namespace SperidTopDownFramework.Runtime
                 AddressableManager.Instance.Instantiate<GameObject>(assetBundle);
             }
 
-            foreach(var pack in _data.RegisterStatePacks)
-            {
-                GameStateManager.Instance.BindName(pack.Name,pack.State);
-            }
-
+         
             System.Diagnostics.Debug.Assert(_data != null, nameof(_data) + " != null");
             UnityEngine.SceneManagement.SceneManager.LoadScene(_data.LoadSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
